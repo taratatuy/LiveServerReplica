@@ -1,0 +1,15 @@
+{
+  "name": "golive",
+  "version": "1.0.0",
+  "description": "Small replica of 'Live Server' extension in VS Code.",
+  "main": "golive.js",
+  "scripts": {
+    "start": "node golive.js"
+  },
+  "keywords": [],
+  "author": "WB (taratatuy@yandex.ru)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
