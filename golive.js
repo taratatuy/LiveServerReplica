@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 class liveServer {
   constructor() {
     if (!process.argv[2]) {
@@ -14,19 +16,19 @@ class liveServer {
   }
 
   _setWatcher() {
-    const fs = require('fs');
-
     let server;
-    server = new Server(this.dir, this.hostFileName, this.port);
-
     let timeout = true;
 
+    // First load.
+    server = new Server(this.dir, this.hostFileName, this.port);
+
     // Files update watcher. As default 'recursive' flag do not work on Linux.
+    // Triggered on save files inside the folder.
     // fs.watch(this.dir, { recursive: true }, (eventType, filename) => {
     fs.watch(this.dir, (eventType, filename) => {
       if (timeout) {
         server.close();
-        console.log('Reload server...');
+        console.log('Reload server... ' + Date.now());
         server = new Server(this.dir, this.hostFileName, this.port);
         timeout = false;
 
@@ -43,8 +45,8 @@ class liveServer {
 class Server {
   constructor(dir, hostFileName, port) {
     this.dir = dir;
-    this.hostFileName = hostFileName || 'index.html';
-    this.port = port || 3000;
+    this.hostFileName = hostFileName;
+    this.port = port;
     this.listener;
 
     this._set();
