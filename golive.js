@@ -22,11 +22,12 @@ class liveServer {
     let timeout = true;
 
     // Files update watcher. As default 'recursive' flag do not work on Linux.
-    fs.watch(this.dir, { recursive: true }, (eventType, filename) => {
+    // fs.watch(this.dir, { recursive: true }, (eventType, filename) => {
+    fs.watch(this.dir, (eventType, filename) => {
       if (timeout) {
         server.close();
         console.log('Reload server...');
-        server = new Server(this.dir);
+        server = new Server(this.dir, this.hostFileName, this.port);
         timeout = false;
 
         // fs.watch triggers twise on one save, so here we have timeout
