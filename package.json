@@ -1,7 +1,7 @@
 {
   "name": "golive",
-  "version": "1.0.0",
-  "description": "Small replica of 'Live Server' extension in VS Code.",
+  "version": "2.0.0",
+  "description": "Small replica of 'Live Server' extension for VS Code.",
   "main": "golive.js",
   "scripts": {
     "start": "node golive.js"
@@ -10,6 +10,9 @@
   "author": "WB (taratatuy@yandex.ru)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "chokidar": "^3.5.1",
+    "express": "^4.17.1",
+    "node-html-parser": "^3.3.4",
+    "socket.io": "^4.1.2"
   }
 }
